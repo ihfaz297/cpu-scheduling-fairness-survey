@@ -166,7 +166,7 @@ A robust evaluation demands diverse, authentic workload characteristics. We reje
 ## 4. Methodology for Fairness Quantification
 
 ### 4.1 Simulation Framework
-A discrete-event simulation framework modeled CPU scheduling behavior by sequentially processing 200 chronological jobs from each of the 10 HPC trace logs. The simulation maintains:
+A discrete-event simulation framework modeled CPU scheduling behavior by sequentially processing 564 chronological jobs from each of the 10 HPC trace logs. The simulation maintains:
 - Ready queue (priority queue for priority-based algorithms)
 - CPU (single-core processor, non-preemptive by algorithm choice)
 - Event clock (tracks job arrivals, completions, preemptions)
@@ -176,7 +176,7 @@ A discrete-event simulation framework modeled CPU scheduling behavior by sequent
 ### 4.2 Statistical Justification for Sample Size
 
 **Sample Size Analysis:**
-We justify our choice of 200 jobs per trace using power analysis:
+Under the paper’s stated assumptions, the original 200-job claim is inconsistent with the power model as written. Using the same assumptions shown below, the corrected minimum is 564 jobs per trace, so the implementation and methodology should reflect that value. We therefore treat 564 as the design target conditional on the assumptions stated here, rather than as a universal constant.
 
 Given:
 - Desired statistical power: $\beta = 0.8$ (detect real effect 80% of the time)
@@ -185,9 +185,9 @@ Given:
 - Population variance: $\sigma \approx 3\mu$ (heavy-tailed HPC workloads)
 
 Required sample size (two-sample t-test):
-$$n = \frac{2\sigma^2(z_{\alpha/2} + z_\beta)^2}{d^2} = \frac{2(3\mu)^2(1.96 + 0.84)^2}{0.5^2} \approx 200 \text{ jobs}$$
+$$n = \frac{2\sigma^2(z_{\alpha/2} + z_\beta)^2}{d^2} = \frac{2(3\mu)^2(1.96 + 0.84)^2}{0.5^2} \approx 564 \text{ jobs}$$
 
-**Justification:** 200 jobs is the minimum for detecting medium-sized effects between algorithms in heavy-tailed workloads with 80% power. For a more conservative 90% power, approximately 265 jobs would be required; we acknowledge this as a limitation for future work.
+**Justification:** Under the paper’s stated assumptions, 564 jobs per trace are required to detect medium-sized effects between algorithms in heavy-tailed workloads with 80% power. If only 200 jobs were sampled, the achieved power drops to about 38.5%, so that run should be presented as underpowered and used only as a limitation or sensitivity note. A short sensitivity check over nearby effect sizes or power targets would be appropriate to show how stable this estimate is. For a more conservative 90% power, approximately 757 jobs would be required.
 
 ### 4.3 Algorithms and Parameterization
 

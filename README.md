@@ -10,7 +10,7 @@ This repository contains all code, data, and analysis for the paper:
 
 > **"Quantifying Fairness: A Systematic Survey of Starvation and Resource Allocation in FCFS, Priority, and Round Robin CPU Scheduling"**
 
-The study evaluates CPU scheduling algorithms not just on efficiency (throughput, turnaround time) but on **fairness and starvation** metrics. It uses 10 authentic historical HPC trace logs, simulating 200 chronological jobs from each trace through a discrete-event scheduling framework.
+The study evaluates CPU scheduling algorithms not just on efficiency (throughput, turnaround time) but on **fairness and starvation** metrics. It uses 10 authentic historical HPC trace logs, simulating 564 chronological jobs from each trace through a discrete-event scheduling framework.
 
 ---
 

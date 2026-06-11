@@ -40,7 +40,7 @@ def load_swf(filename, max_rows=200):
 
 def generate_datasets():
     datasets = {}
-    n_processes = 200
+    n_processes = 564
 
     # 10 Real World Traces:
     datasets['Real SDSC SP2'] = load_swf('SDSC-SP2.swf', n_processes)

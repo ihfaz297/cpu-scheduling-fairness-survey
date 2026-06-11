@@ -366,7 +366,7 @@ We tested five popular algorithms across 10 real supercomputer workloads to find
 We built a Python simulator that mimics a real CPU scheduler. Here's what we did:
 
 **The Setup:**
-- Started with **200 real jobs** from each trace (ordered by actual timestamps)
+- Started with **564 real jobs** from each trace (ordered by actual timestamps)
 - Simulated a **single CPU core** — the simplest realistic model
 - Never let the CPU sit idle if jobs were waiting
 
@@ -384,15 +384,15 @@ The simulator processes events in order:
 
 ---
 
-### 4.2 Why 200 Jobs? The Statistics
+### 4.2 Why 564 Jobs? The Statistics
 
-**The Question:** Is 200 jobs enough to get reliable results?
+**The Question:** What happens if only 200 jobs are used?
 
-**The Answer:** Using standard statistical methods (power analysis), we calculated the minimum sample size needed to detect real differences between algorithms with 80% confidence. With job sizes varying wildly (some tiny, some huge — that's why σ=3μ in HPC workloads), we needed at least **200 jobs** to see meaningful patterns.
+**The Answer:** Under the paper’s stated assumptions, the minimum sample size needed to detect real differences between algorithms with 80% confidence is **564 jobs** per trace. With job sizes varying wildly (some tiny, some huge — that's why σ=3μ in HPC workloads), the original 200-job statement is inconsistent with that formula. We treat 564 as the design target conditional on those assumptions.
 
 **The Trade-off:**
-- ✅ **200 jobs:** Reliably detects medium-sized differences (80% confidence)
-- 📊 **More jobs needed:** For higher confidence (90%), we'd need ~265 jobs
+- ✅ **564 jobs:** Reliably detects medium-sized differences (80% confidence)
+- 📊 **If only 200 jobs were used:** The achieved power is only about 38.5%, so that run should be treated as exploratory
 - ⏱️ **Why not more?** Real traces limit us, and computational cost increases
 
 **In Plain Terms:** This is the minimum sample size where patterns are statistically significant, not noise. If we'd used fewer jobs, results might be flukes. If we'd used more, we'd waste time for minimal gain in precision.
@@ -553,7 +553,7 @@ For each trace, we tested different slice sizes and found the sweet spot:
 - **Total time from start to finish** — turnaround time
 - **How fast the first response was** — response time
 
-**Then We Computed These Stats (across all 200 jobs):**
+**Then We Computed These Stats (across all 564 jobs):**
 - **Average Wait Time (AWT):** How long jobs typically wait
 - **Response Time:** How quickly users see first output
 - **Jain's Fairness Index:** 0 = totally unfair, 1.0 = perfectly fair
@@ -711,5 +711,5 @@ This comprehensive empirical evaluation on 10 real-world HPC traces reveals that
 ---
 
 **Document Generated:** 2026-06-10  
-**Data Source:** 10 real-world HPC traces, 200 jobs each, 53 metrics per algorithm  
-**Study Scale:** 50 algorithm-trace combinations, 10,000 total jobs analyzed
+**Data Source:** 10 real-world HPC traces, 564 jobs each, 53 metrics per algorithm
+**Study Scale:** 50 algorithm-trace combinations, 28,200 total jobs analyzed
