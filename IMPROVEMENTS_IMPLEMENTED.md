@@ -32,9 +32,9 @@ This document tracks all improvements made to **Review_Paper.md** to strengthen 
 
 #### 4. Enhanced Methodology (Section 4)
 - **Added:** Section 4.1 - Simulation framework details (event queue, work-conserving property)
-- **Added:** Section 4.2 - Statistical justification for 200-job sample size via power analysis
+- **Added:** Section 4.2 - Statistical justification for 564-job sample size via power analysis
   - Power = 0.8, significance α = 0.05, effect size d = 0.5
-  - Formula: n = 2σ²(z_α/2 + z_β)² / d² ≈ 200
+  - Formula: n = 2σ²(z_α/2 + z_β)² / d² ≈ 564
 - **Added:** Section 4.3 - Detailed algorithm pseudocode for all 5 algorithms (FCFS, SJF, RR, Priority, Priority+Aging)
 - **Added:** Section 4.4 - Quantum size selection heuristics and sensitivity ranges
 - **Result:** Complete reproducibility; practitioners can implement/validate algorithms
